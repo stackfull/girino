@@ -38,7 +38,7 @@
 
 #define BAUDRATE	115200	// Baud rate of UART in bps
 #define COMMANDDELAY	10	// ms to wait for the filling of Serial buffer
-#define COMBUFFERSIZE	3	// Size of buffer for incoming numbers
+#define COMBUFFERSIZE	4	// Size of buffer for incoming numbers
 
 #if DEBUG == 1
 	#define dprint(expression) Serial.print("# "); Serial.print( #expression ); Serial.print( ": " ); Serial.println( expression )

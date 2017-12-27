@@ -203,12 +203,12 @@ void loop (void) {
 			case 'w':			// 'w' for new wait setting
 			case 'W': {
 				// Wait for COMMANDDELAY ms to be sure that the Serial buffer is filled
-				delay(COMMANDDELAY);
+				delay(COMMANDDELAY * 2);
 
 				fillBuffer( commandBuffer, COMBUFFERSIZE );
 
 				// Convert buffer to integer
-				uint8_t newW = atoi( commandBuffer );
+				uint16_t newW = atoi( commandBuffer );
 
 				// Display moving status indicator
 				Serial.print("Setting waitDuration to: ");
@@ -221,12 +221,12 @@ void loop (void) {
 			case 't':			// 'w' for new threshold setting
 			case 'T': {
 				// Wait for COMMANDDELAY ms to be sure that the Serial buffer is filled
-				delay(COMMANDDELAY);
+				delay(COMMANDDELAY * 2);
 
 				fillBuffer( commandBuffer, COMBUFFERSIZE );
 
 				// Convert buffer to integer
-				uint8_t newT = atoi( commandBuffer );
+				uint16_t newT = atoi( commandBuffer );
 
 				// Display moving status indicator
 				Serial.print("Setting threshold to: ");
