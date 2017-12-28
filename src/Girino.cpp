@@ -41,7 +41,7 @@ volatile  boolean freeze;
 
           uint8_t prescaler;
           uint8_t triggerEvent;
-          uint8_t threshold;
+volatile uint8_t threshold;
 
              char commandBuffer[COMBUFFERSIZE+1];
 
@@ -75,7 +75,6 @@ void setup (void) {		// Setup of the microcontroller
 
 	initPins();
 	initADC();
-	initAnalogComparator();
 
 	Serial.println("Girino ready");
 	//printStatus();
@@ -135,13 +134,9 @@ void loop (void) {
 				memset( (void *)ADCBuffer, 0, sizeof(ADCBuffer) );
 
 				startADC();
-				// Let the ADC fill the buffer a little bit
-				//delay(1);
-				startAnalogComparator();
 				break;
 			case 'S':			// 'S' for stopping ADC conversions
 				//Serial.println("ADC conversions stopped");
-				stopAnalogComparator();
 				stopADC();
 				break;
 			case 'p':			// 'p' for new prescaler setting
@@ -163,24 +158,6 @@ void loop (void) {
 				}
 				break;
 
-			case 'r':			// 'r' for new voltage reference setting
-			case 'R': {
-				// Wait for COMMANDDELAY ms to be sure that the Serial buffer is filled
-				delay(COMMANDDELAY);
-
-				fillBuffer( commandBuffer, COMBUFFERSIZE );
-
-				// Convert buffer to integer
-				uint8_t newR = atoi( commandBuffer );
-
-				// Display moving status indicator
-				Serial.print("Setting voltage reference to: ");
-				Serial.println(newR);
-
-				setVoltageReference(newR);
-				}
-				break;
-
 			case 'e':			// 'e' for new trigger event setting
 			case 'E': {
 				// Wait for COMMANDDELAY ms to be sure that the Serial buffer is filled
@@ -196,7 +173,6 @@ void loop (void) {
 				Serial.println(newE);
 
 				triggerEvent = newE;
-				setTriggerEvent(newE);
 				}
 				break;
 
@@ -233,7 +209,6 @@ void loop (void) {
 				Serial.println(newT);
 
 				threshold = newT;
-				analogWrite( thresholdPin, threshold );
 				}
 				break;
 

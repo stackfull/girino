@@ -34,7 +34,6 @@
 
 #define ADCPIN		0
 #define errorPin	13
-#define thresholdPin	3
 
 #define BAUDRATE	115200	// Baud rate of UART in bps
 #define COMMANDDELAY	10	// ms to wait for the filling of Serial buffer
@@ -65,16 +64,11 @@
 //-----------------------------------------------------------------------------
 void initPins(void);
 void initADC(void);
-void initAnalogComparator(void);
 
 void startADC( void );
 void stopADC( void );
-void startAnalogComparator( void );
-void stopAnalogComparator( void );
 
 void setADCPrescaler( uint8_t prescaler );
-void setVoltageReference( uint8_t reference );
-void setTriggerEvent( uint8_t event );
 
 void error (void);
 // Fills the given buffer with bufferSize chars from a Serial object
@@ -96,7 +90,7 @@ extern volatile  boolean freeze;
 
 extern           uint8_t prescaler;
 extern           uint8_t triggerEvent;
-extern           uint8_t threshold;
+extern volatile  uint8_t threshold;
 
 extern              char commandBuffer[COMBUFFERSIZE+1];
 
