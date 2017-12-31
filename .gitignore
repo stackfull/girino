@@ -24,7 +24,7 @@ Session.vim
 .netrwhist
 *~
 .idea
-cmake-build-debug/
+cmake-build-*/
 *.iws
 out/
 Thumbs.db
