@@ -5,7 +5,7 @@
 
 #include "AnalogInput.hpp"
 #include "Control.hpp"
-#include "Output.hpp"
+#include "CopyOutput.hpp"
 #include "debug.hpp"
 
 #include <iostream>
@@ -50,25 +50,6 @@ void hexdump(const char *buf, int buflen) {
         printf("%c", isprint(buf[i+j]) ? buf[i+j] : '.');
     printf("\n");
   }
-}
-
-void Output::println(const char *message) {
-  std::cout << message << std::endl;
-}
-
-void Output::write(const char *data, size_t len) {
-  std::cout << "DATA[" << len << "]" << std::endl;
-  hexdump(data, len);
-}
-
-void Output::binary(size_t len) {
-  std::cout << "L" << len << std::endl;
-}
-void Output::text() {
-}
-
-void Output::report(const char *parameter, long value) {
-  std::cout << parameter << ": " << value << std::endl;
 }
 
 void AnalogInput::setup() {}

@@ -2,30 +2,11 @@
 #include <unity.h>
 #include <vector>
 #include "SampleBuffer.hpp"
+#include "native/CopyOutput.hpp"
 
 #ifdef UNIT_TEST
 
 extern void hexdump(const char *buf, int buflen);
-
-class CopyOutput: public Output {
-
-public:
-  std::vector<char> captured;
-  size_t len = SIZE_T_MAX;
-
-  void println(const char* message) {
-  }
-  void report(const char* parameter, long value) {
-  }
-  void binary(size_t l) {
-    len = l;
-  }
-  void write(const char* data, size_t len) {
-    for (const char* ptr = data; ptr - data < len; ptr++) {
-      captured.push_back(*ptr);
-    }
-  }
-};
 
 void test_fresh_buffer() {
     SampleBuffer<uint8_t, 1240> buffer;

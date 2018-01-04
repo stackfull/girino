@@ -10,7 +10,9 @@
 #ifndef SCOPE_DEBUG_HPP
 #define SCOPE_DEBUG_HPP
 
+#ifndef DEBUG
 #define DEBUG		0
+#endif
 
 #if DEBUG == 1
 extern void debugPrint(const char* message);

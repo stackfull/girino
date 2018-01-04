@@ -5,11 +5,12 @@
 #include <Arduino.h>
 #include "Scope.hpp"
 #include "Control.hpp"
+#include "SerialOutput.hpp"
 
 #ifndef UNIT_TEST
 
 namespace {
-Output output;
+SerialOutput output;
 AnalogInput adc;
 Scope scope(adc, output);
 Control control(output, scope);

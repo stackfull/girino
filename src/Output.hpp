@@ -9,13 +9,11 @@
 
 class Output {
 public:
-
-  virtual void println(const char* message);
-  virtual void report(const char* parameter, long value);
-  virtual void binary(size_t len);
-  virtual void text();
-  virtual void write(const char* data, size_t len);
-
+  virtual void println(const char* message) = 0;
+  virtual void report(const char* parameter, long value) = 0;
+  virtual void binary(size_t len) = 0;
+  virtual void text() = 0;
+  virtual void write(const char* data, size_t len) = 0;
 };
 
 
