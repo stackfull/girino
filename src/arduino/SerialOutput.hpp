@@ -15,6 +15,9 @@ public:
   void binary(size_t len) override;
   void text() override;
   void write(const char *data, size_t len) override;
+  void running() override;
+  void stopped() override;
+  void latest(int value) override;
 };
 
 #endif //SCOPE_SERIALOUTPUT_HPP

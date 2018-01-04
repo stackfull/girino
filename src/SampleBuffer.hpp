@@ -29,6 +29,7 @@ public:
       reset();
   }
 
+  bool free_running() { return _state == FREE_RUNNING; };
   bool full() { return _state == FULL; };
   bool buffering() { return _state == BUFFERING; };
 

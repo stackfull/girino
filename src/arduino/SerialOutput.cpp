@@ -29,3 +29,16 @@ void SerialOutput::report(const char *parameter, long value) {
   Serial.println(value);
 }
 
+void SerialOutput::running() {
+  Serial.println("running");
+}
+
+void SerialOutput::stopped() {
+  Serial.println("stopped");
+
+}
+
+void SerialOutput::latest(int value) {
+
+}
+

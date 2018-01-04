@@ -29,6 +29,9 @@ public:
       captured.push_back(*ptr);
     }
   }
+  void running() override {};
+  void stopped() override {};
+  void latest(int value) override {};
 };
 
 

@@ -59,12 +59,10 @@ void Control::poll() {
     int theChar = Serial.read();
     switch (theChar) {
       case 's':      // 's' for starting ADC conversions
-        //_output.println("ADC conversions started");
         _scope.run();
         break;
 
       case 'S':      // 'S' for stopping ADC conversions
-        //_output.println("ADC conversions stopped");
         _scope.stop();
         break;
 
@@ -109,8 +107,6 @@ void Control::report() {
 int Control::readArg(const char* name) {
   delay(COMMANDDELAY);
   fillBuffer(commandBuffer, COMBUFFERSIZE, &Serial);
-  int val = atoi(commandBuffer);
-  _output.println((String(F("Setting ")) + name + F(" to: ") + val).c_str());
-  return val;
+  return atoi(commandBuffer);
 }
 

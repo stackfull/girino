@@ -29,6 +29,7 @@ def capture(stream):
 
     for i in range(5):
         stream.write(b's')
+        print(stream.readline())
         length = find_data_start(stream)
         eventString = stream.read(length)
         eventData = np.array(unpack(f"{length:d}B", eventString))

@@ -28,6 +28,8 @@ class Scope :public AnalogInput::Callback {
 
 public:
   typedef uint8_t sample_t;
+  const sample_t MAX_SAMPLE = (sample_t)-1;
+
   Scope(AnalogInput &adc, Output &output);
 
   void setup();
@@ -46,9 +48,10 @@ private:
   AnalogInput& _adc;
   Output& _output;
   size_t _leading;
+  int _prescaler;
   Trigger _trigger;
   sample_t _threshold;
-  sample_t _prescaler;
+  sample_t _last;
 
   bool triggers(sample_t sample);
 };

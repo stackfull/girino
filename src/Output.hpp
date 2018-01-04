@@ -14,6 +14,9 @@ public:
   virtual void binary(size_t len) = 0;
   virtual void text() = 0;
   virtual void write(const char* data, size_t len) = 0;
+  virtual void running() = 0;
+  virtual void stopped() = 0;
+  virtual void latest(int value) = 0;
 };
 
 
