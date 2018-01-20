@@ -16,7 +16,7 @@
 #include "AnalogInput.hpp"
 #include "Output.hpp"
 
-#define SAMPLE_BUFFER_SIZE 1280
+#define SAMPLE_BUFFER_SIZE 128
 
 enum Trigger {
   TRIGGER_TOGGLE = 1,

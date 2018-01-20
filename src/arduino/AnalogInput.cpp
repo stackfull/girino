@@ -147,8 +147,8 @@ void initADC(void) {
 	// power consumption in the digital input buffer.
 	// Note that ADC pins ADC7 and ADC6 do not have digital input buffers,
 	// and therefore do not require Digital Input Disable bits.
-	bitSet(DIDR0, ADC5D);
-	bitSet(DIDR0, ADC4D);
+	//bitSet(DIDR0, ADC5D);
+	//bitSet(DIDR0, ADC4D);
 	bitSet(DIDR0, ADC3D);
 	bitSet(DIDR0, ADC2D);
 	bitSet(DIDR0, ADC1D);

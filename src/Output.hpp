@@ -6,6 +6,7 @@
 #ifndef SCOPE_OUTPUT_HPP
 #define SCOPE_OUTPUT_HPP
 
+#include <stddef.h>
 
 class Output {
 public:
