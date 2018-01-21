@@ -28,6 +28,8 @@ private:
   Output& _next;
   U8G2_SSD1306_128X64_NONAME_1_HW_I2C _u8g2;
   RunningAvg _level;
+  volatile int _counter;
+  int _point;
 };
 
 

@@ -38,6 +38,13 @@ void fillBuffer( char *buffer, int bufferSize, Stream* serial )
 
 }
 
+int freeRam ()
+{
+  extern int __heap_start, *__brkval;
+  int v;
+  return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval);
+}
+
 Control::Control(Output& output, Scope& scope)
     :_scope(scope),
      _output(output){
@@ -64,6 +71,10 @@ void Control::poll() {
 
       case 'S':      // 'S' for stopping ADC conversions
         _scope.stop();
+        break;
+
+      case 'f':
+        _output.report("free", freeRam());
         break;
 
       case 'p':      // 'p' for new prescaler setting
@@ -101,6 +112,7 @@ void Control::poll() {
 void Control::report() {
   _output.report("Buffer size", SAMPLE_BUFFER_SIZE);
   _output.report("Baud rate", BAUDRATE);
+  _output.report("Free Mem", freeRam());
   _scope.report();
 }
 

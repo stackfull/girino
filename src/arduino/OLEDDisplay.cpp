@@ -35,6 +35,15 @@ void OLEDDisplay::setup() {
 }
 
 void OLEDDisplay::loop() {
+  String mean(_level.mean(), 2);
+  String stdev(_level.standard_deviation(), 4);
+
+  _u8g2.firstPage();
+  do {
+    _u8g2.setFont(u8g2_font_chroma48medium8_8r);
+    _u8g2.drawStr(10,25,mean.c_str());
+    _u8g2.drawStr(10,40,stdev.c_str());
+  } while ( _u8g2.nextPage() );
 }
 
 void OLEDDisplay::println(const char *message) {
@@ -65,19 +74,10 @@ void OLEDDisplay::stopped() {
   _next.stopped();
 }
 
-
 void OLEDDisplay::latest(int value) {
   _level.sample(value);
+  _counter++;
   _next.latest(value);
-  String mean(_level.mean(), 2);
-  String stdev(_level.standard_deviation(), 4);
-
-  _u8g2.firstPage();
-  do {
-    _u8g2.setFont(u8g2_font_chroma48medium8_8r);
-    _u8g2.drawStr(10,20,mean.c_str());
-    _u8g2.drawStr(10,35,stdev.c_str());
-  } while ( _u8g2.nextPage() );
 }
 
 

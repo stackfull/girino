@@ -28,15 +28,18 @@ Scope::Scope(AnalogInput &adc, Output &output)
      _leading(DEFAULT_LEADING),
      _prescaler(DEFAULT_PRESCALER),
      _trigger(DEFAULT_TRIGGER),
-     _threshold(DEFAULT_THRESHOLD) {
+     _threshold(DEFAULT_THRESHOLD),
+     _searching(false) {
 }
 
 void Scope::setup() {
   _sampler.reset();
   _adc.setup();
+  _adc.start(*this);
 }
 
 void Scope::receive(sample_t sample) {
+  _last = sample;
   if (_sampler.full()) {
     return;
   }
@@ -46,10 +49,12 @@ void Scope::receive(sample_t sample) {
       _sampler.sweep(SAMPLE_BUFFER_SIZE - _leading);
     }
   }
-  _last = sample;
 }
 
 bool Scope::triggers(sample_t sample) {
+  if (!_searching) {
+    return false;
+  }
   switch (_trigger) {
     case TRIGGER_TOGGLE:
       return (sample > _threshold) xor (_last > _threshold);
@@ -64,6 +69,7 @@ bool Scope::triggers(sample_t sample) {
 void Scope::loop() {
   _output.latest(_last);
   if (_sampler.full()) {
+    _searching = false;
     _sampler.write(_output);
     _sampler.reset();
   }
@@ -71,12 +77,13 @@ void Scope::loop() {
 
 void Scope::run() {
   _sampler.reset();
-  _adc.start(*this);
+  _searching = true;
   _output.running();
 }
 
 void Scope::stop() {
-  _adc.stop();
+  _searching = false;
+  _sampler.reset();
   _output.stopped();
 }
 

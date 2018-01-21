@@ -8,7 +8,7 @@
 class RunningAvg {
 public:
   explicit RunningAvg(double a)
-      :_a(a), _ainv(1.0L-a), _mean(0.0L), _meansq(0.0L) {
+      :_a(a), _ainv(1.0-a), _mean(0.0L), _meansq(0.0L) {
   }
   void sample(double x) {
     _mean = _ainv * _mean + _a * x;
@@ -18,8 +18,8 @@ public:
   double variance() { return _meansq - _mean * _mean; }
   double standard_deviation() { return sqrt(variance()); }
 private:
-  double _a;
-  double _ainv;
+  float _a;
+  float _ainv;
   double _mean;
   double _meansq;
 };

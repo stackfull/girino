@@ -51,7 +51,8 @@ private:
   int _prescaler;
   Trigger _trigger;
   sample_t _threshold;
-  sample_t _last;
+  volatile sample_t _last;
+  bool _searching;
 
   bool triggers(sample_t sample);
 };
