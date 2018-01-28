@@ -30,6 +30,7 @@ private:
   RunningAvg _level;
   volatile int _counter;
   int _point;
+  size_t _samples;
 };
 
 

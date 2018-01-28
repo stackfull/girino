@@ -102,6 +102,12 @@ void Control::poll() {
         report();
         break;
 
+      case 'r':      // 'r' reset
+      case 'R':
+        _scope.stop();
+        ready();
+        break;
+
       default:
         // Display error message
         _output.println((String(F("ERROR: Command not found, it was: ")) + theChar).c_str());

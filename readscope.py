@@ -189,6 +189,8 @@ def monitor(params):
     ctl = Control(ser, params.threshold, params.wait)
     with ser:
         print(f"Using serial port {ser.name}")
+        ser.flushInput()
+        ser.write(b"r");
         for i in range(5):
             line = ser.readline().rstrip()
             dprint("LINE", line)

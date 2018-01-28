@@ -72,7 +72,7 @@ void Control::ready() {
 
 int main( int argc, char **argv) {
 
-  Output output;
+  CopyOutput output;
   AnalogInput adc;
   Scope scope(adc, output);
   Control control(output, scope);
